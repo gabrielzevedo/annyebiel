@@ -1,0 +1,35 @@
+.countdownHolder {
+    width: 450px;
+    margin: 0 auto;
+    font: 40px/1.5 'Open Sans Condensed', sans-serif;
+    text-align: center;
+    letter-spacing: -3px;
+}
+
+.position {
+    display: inline-block;
+    height: 1.6em;
+    overflow: hidden;
+    position: relative;
+    width: 1.05em;
+}
+
+.digit {
+    position: absolute;
+    display: block;
+    width: 1em;
+    text-align: center;
+    color: #fff;
+    letter-spacing: -1px;
+}
+
+.countDiv {
+    display: inline-block;
+    width: 16px;
+    height: 1.6em;
+    position: relative;
+}
+
+.countDiv:after {
+    top: 0.9em;
+}
