@@ -46,6 +46,7 @@ a {
 
 img {
     display: block;
+    pointer-events: none;
 }
 
 body {
@@ -210,11 +211,13 @@ body {
 /* countdown */
 #countdown {
     width: 100%;
-    margin: 0 auto 180px;
+    margin: 0 auto 190px;
     text-align: center;
     @include font2(400);
     font-size: 104px;
     position: relative;
+    opacity: 0;
+    transform: translateY(-100px);
 
     &:after {
         content: '#CasamentoAnnyeBiel';
@@ -339,10 +342,11 @@ body {
 }
 
 #party {
-    width: 100%;
-    max-width: $limit;
+    opacity: 0;
+    width: $limit;
     margin: 0 auto;
     @include flex(flex-start, space-between);
+    padding-bottom: 1000px;
 
     .title {
         margin-top: 40px;
@@ -362,22 +366,61 @@ body {
     .right {
         @include flex(flex-start, space-between);
 
-        .col1 {
+        .col-1 {
             margin-right: -150px;
             margin-top: 188px;
 
             .box-1 {
+                width: 226px;
+                height: 226px;
+                background-color: #ededed;
+                text-transform: uppercase;
+                color: $blue;
+                @include font2(400);
+                text-align: center;
+                letter-spacing: .5px;
+                @include flex(center, center);
+                flex-direction: column;
+                position: relative;
+                transform: translateX(-80px);
+                opacity: 0;
 
+                .day {
+                    font-size: 18px;
+                    
+                    &::after {
+                        content: '';
+                        width: 110%;
+                        height: 1px;
+                        background-color: #d0d0d8;
+                        display: block;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        position: relative;
+                        margin: 20px 0 25px;
+                    }
+                }
+
+                .hour {
+                    font-size: 30px;
+                }
             }
 
             .box-2 {
                 margin-top: 18px;
+                transform: translateY(80px);
+                opacity: 0;
             }
         }
 
-        .col2 {
+        .col-2 {
             @include flex(flex-end, flex-start);
             flex-direction: column;
+
+            .box-1 {
+                transform: translateY(-80px);
+                opacity: 0;
+            }
             
             .box-2 {
                 display: grid;
@@ -386,6 +429,8 @@ body {
                 width: 100%;
                 max-width: 511px;
                 margin-top: 18px;
+                transform: translateX(80px);
+                opacity: 0;
 
                 a {
                     @include flex(center, center);
@@ -396,46 +441,28 @@ body {
                     width: 100%;
                     padding: 28px 10px;
 
+                    span {
+                        position: relative;
+                        z-index: 1;
+                    }
+
                     &.btn-primary {
-                        background-color: $pink;
+                        border: 2px solid $pink;
                         color: $white;
                         transition: all ease .3s;
                         position: relative;
 
                         &::before {
-                            content: "";
+                            content: '';
                             position: absolute;
-                            top: 0;
-                            left: 0;
-                            border-left: 2px solid $pink;
-                            border-top: 2px solid $pink;
-                        }
-
-                        &::after {
-                            content: "";
-                            position: absolute;
-                            bottom: 0;
                             right: 0;
-                            border-right: 2px solid $pink;
-                            border-bottom: 2px solid $pink;
-                        }
-
-                        &::before, &::after {
-                            width: 0%;
-                            height: 0%;
-                            transition: ease .3s;
-                        }
-
-                        &:hover {
-                            background-color: transparent;
-                            color: $pink;
-
-                            &::before,
-                            &::after {
-                                width: 100%;
-                                height: 100%;
-                                transition: ease 1s;
-                            }
+                            top: 0;
+                            width: 100%;
+                            height: 100%;
+                            background-color: $pink;
+                            z-index: 0;
+                            transition: all ease .3s;
+                            transform-origin: right;
                         }
                     }
 
@@ -443,11 +470,38 @@ body {
                         border: 2px solid $pink;
                         color: $pink;
                         transition: all ease .3s;
+                        position: relative;
 
-                        &:hover {
+                        &::before {
+                            content: '';
+                            position: absolute;
+                            left: 0;
+                            top: 0;
+                            width: 100%;
+                            height: 100%;
                             background-color: $pink;
+                            z-index: 0;
+                            transition: all ease .3s;
+                            transform-origin: left;
+                            transform: scaleX(0);
+                        }
+                    }
+                }
+
+                &.animation {
+                    .btn-primary {
+                        color: $pink;
+
+                        &::before {
+                            transform: scaleX(0);
+                        }
+
+                        & + .btn-secondary {
                             color: $white;
-                            transition: all ease 1s;
+
+                            &::before {
+                                transform: scaleX(1);
+                            }
                         }
                     }
                 }
