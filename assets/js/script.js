@@ -153,7 +153,7 @@ $(function(){
             .setTween("#gifts .left", {
                 opacity: 1,
                 x: 0,
-                paddingLeft: 215
+                paddingLeft: '16%'
             })
             // .addIndicators({name: "gifts left"})
             .addTo(controller);
@@ -237,7 +237,8 @@ $(function(){
         $.each(data, function(key, val) {
             if(val.aprovada) {
                 items.push('<div class="swiper-slide" id="' + key + '">\
-                    <div class="msg">' + val.mensagem + '</div>\
+                    <div class="title">Mensagens</div>\
+                    <div class="msg">' + val.mensagem.replace('e ser a nora da Anny', 'e ter a Anny como nora') + '</div>\
                     <div class="author">' + val.nome.toLowerCase().capitalizeNames().replace(' E ', ' e ').replace('Jose', 'José').replace('Joao', 'João') + '</div>\
                     <div class="date">' + val.data + '</div>\
                 </div>');
@@ -262,12 +263,23 @@ $(function(){
             },
             autoplay: {
                 delay: 5000,
+                disableOnInteraction: false,
             },
-            loop: true,
             breakpoints: {
                 1000: {
                     loop: false,
                     effect: 'fade',
+                },
+            },
+            on: {
+                touchStart: function (a, b, c) {
+                    $('#testimonials .swiper-container').addClass('touch');
+                },
+                touchEnd: function (a, b, c) {
+                    $('#testimonials .swiper-container').removeClass('touch animate')
+                    setTimeout(function(){
+                        $('#testimonials .swiper-container').addClass('animate');
+                    },100);
                 },
             }
         });
@@ -286,18 +298,26 @@ $(function(){
     getCaptcha();
 
     //modal
+
+    function modal(element) {
+        $('body').css('overflow', 'hidden');
+        $(element).addClass('active');
+    }
+
     $('.modal').click(function(event){
         if (!$(event.target).closest('.modal-container').length) {
             $(this).removeClass('active');
+            $('body').css('overflow', '');
         }
     });
 
     $('.modal-close').click(function(){
         $(this).parents('.modal').removeClass('active');
+        $('body').css('overflow', '');
     });
 
     $('#testimonials .reply').click(function(){
-        $('.modal-testimonials').addClass('active');
+        modal('.modal-testimonials');
     });
 
     //envio form
@@ -343,7 +363,7 @@ $(function(){
                 $(form).parents('.modal').removeClass('active');
 
                 if(data.created != '') {
-                    $('.modal-testimonials-thank').addClass('active');
+                    modal('.modal-testimonials-thank');
                 }
             })
             .fail(function($xhr) {
@@ -459,7 +479,7 @@ $(function(){
                     $(form).parents('.modal').removeClass('active');
 
                     if(data.created != '') {
-                        $('.modal-rsvp-sent').addClass('active');
+                        modal('.modal-rsvp-sent');
                     }
                 })
                 .fail(function($xhr) {

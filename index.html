@@ -79,7 +79,7 @@
         </div>
 
         <div class="title">Mensagens</div>
-        <div class="swiper-container">
+        <div class="swiper-container animate">
             <div class="swiper-wrapper"></div>
             <div class="swiper-scrollbar"></div>
         </div>
@@ -131,7 +131,7 @@
             </a>
             <div class="others">
                 <p>ou presentear através</p>
-                <a href="https://casamento.casasbahia.com.br/lista-presentes/874286" target="_blank" class="other"><img src="assets/img/casas-bahia.png" alt="Casas Bahia"></a>
+                <a href="https://casamento.casasbahia.com.br/lista-presentes/874286" target="_blank" class="other"><img src="assets/img/casas-bahia.svg" width="85" alt="Casas Bahia"></a>
             </div>
         </div>
         <div class="right">
@@ -158,7 +158,7 @@
             <div class="left">
                 <div class="title">Confirmar presença</div>
                 <div class="subtitle">Momentos inesquecíveis devem ser <br/>compartilhados com pessoas especiais</div>
-                <p>Faça parte da nossa história de amor, <br/>preencha o formulário ao lado e confirme sua presença.</p>
+                <p>Faça parte da nossa história de amor, <br/>preencha o formulário <span class="desktop">ao lado</span><span class="mobile">abaixo</span> e confirme sua presença.</p>
             </div>
             <div class="separator"></div>
             <div class="right" id="confirmar-presenca">
@@ -177,7 +177,7 @@
                     </div>
                     <div class="input-group etapa-2 adultos">
                         <label for="qtd_pessoas">Quantos Adultos?</label>
-                        <select name="qtd_pessoas" id="qtd_pessoas">
+                        <select name="qtd_pessoas" id="qtd_pessoas" required>
                             <option value="" hidden>Selecione</option>
                             <option value="1" hidden>1</option>
                             <option value="2" hidden>2</option>
@@ -195,7 +195,7 @@
                     </div>
                     <div class="input-group etapa-2 criancas">
                         <label for="criancas">Quantas crianças? <small>(até 10 anos)</small></label>
-                        <select name="criancas" id="criancas">
+                        <select name="criancas" id="criancas" required>
                             <option value="0">Nenhuma</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
@@ -211,11 +211,11 @@
                     </div>
                     <div class="input-group etapa-2">
                         <label for="email_convidado">E-mail</label>
-                        <input type="email" name="email" id="email_convidado">
+                        <input type="email" name="email" id="email_convidado" required>
                     </div>
                     <div class="input-group etapa-2">
                         <label for="ddd">Celular</label>
-                        <input type="tel" name="telefone" id="telefone" minlength="14">
+                        <input type="tel" name="telefone" id="telefone" minlength="14" required>
                     </div>
                     <button>Continuar <span class="arrow-right"></span></button>
                     <div class="error-list"></div>
