@@ -1,10 +1,4 @@
 $(function(){
-    //parallax header
-    if($(window).innerWidth() >= 1000) {
-        $("#header").mousemove(function(e) {
-            parallaxIt(e, ".bg-wrapper", ".bg", -30);
-        });
-    }
 
     function parallaxIt(e, parent, target, movement) {
         var $this = $(parent);
@@ -32,180 +26,193 @@ $(function(){
     });
 
     //scrollmagic
-    var controller = new ScrollMagic.Controller();
+    function animations(){
 
-    var scene1 = new ScrollMagic
-        .Scene({triggerElement: "#header", duration: 800, offset: 500})
-        .setTween("#countdown", {
-            opacity: 1,
-            y: 0
-        })
-        .addIndicators({name: "opacity #countdown"})
-        .addTo(controller);
-
-    var sceneDays = new ScrollMagic
-        .Scene({triggerElement: "#header", duration: 300, offset: 500})
-        .setTween("#countdown .countDays", {
-            opacity: 1,
-            y: 0
-        })
-        .addIndicators({name: "Days"})
-        .addTo(controller);
-
-    var sceneHours = new ScrollMagic
-        .Scene({triggerElement: "#header", duration: 300, offset: 650})
-        .setTween("#countdown .countHours", {
-            opacity: 1,
-            y: 0
-        })
-        .addIndicators({name: "Hours"})
-        .addTo(controller);
-
-    var sceneMinutes = new ScrollMagic
-        .Scene({triggerElement: "#header", duration: 300, offset: 800})
-        .setTween("#countdown .countMinutes", {
-            opacity: 1,
-            y: 0
-        })
-        .addIndicators({name: "Minutes"})
-        .addTo(controller);
-
-    var sceneSeconds = new ScrollMagic
-        .Scene({triggerElement: "#header", duration: 300, offset: 950})
-        .setTween("#countdown .countSeconds", {
-            opacity: 1,
-            y: 0
-        })
-        .addIndicators({name: "Seconds"})
-        .addTo(controller);
-
-    var scene2 = new ScrollMagic.Scene({triggerElement: "#party", duration: 500})
-        .setTween("#party", {
-            opacity: 1
-        })
-        .addIndicators({name: "opacity #party"})
-        .addTo(controller);
-
-    var scene25 = new ScrollMagic.Scene({triggerElement: "#party", duration: 290})
-        .setTween("#party .left", {
-            x: 0
-        })
-        .addIndicators({name: "#party left"})
-        .addTo(controller);
-
-    var scene3 = new ScrollMagic.Scene({triggerElement: "#party", duration: 500, offset: 300})
-        .setTween("#party .col-2 .box-1", {
-            opacity: 1,
-            y: 0
-        })
-        .addIndicators({name: "col2 box1"})
-        .addTo(controller);
-
-    var scene4 = new ScrollMagic.Scene({triggerElement: "#party", duration: 500, offset: 300})
-        .setTween("#party .col-2 .box-2", {
-            opacity: 1,
-            x: 0
-        })
-        .addIndicators({name: "col2 box2"})
-        .addTo(controller);
-
-    var scene5 = new ScrollMagic.Scene({triggerElement: "#party", duration: 500, offset: 300})
-        .setTween("#party .col-1 .box-1", {
-            opacity: 1,
-            x: 0
-        })
-        .addIndicators({name: "col1 box1"})
-        .addTo(controller);
-
-    var scene6 = new ScrollMagic.Scene({triggerElement: "#party", duration: 500, offset: 300})
-        .setTween("#party .col-1 .box-2", {
-            opacity: 1,
-            y: 0
-        })
-        .addIndicators({name: "col1 box2"})
-        .addTo(controller);
-
-    var scene7 = new ScrollMagic.Scene({triggerElement: "#party", duration: 800, offset: 315})
-        .setPin("#party")
-        .addIndicators({name: "pin party"})
-        .addTo(controller);
-
-    var scene8 = new ScrollMagic.Scene({triggerElement: "#testimonials", duration: 800, offset: -300})
-        .setTween("#testimonials .bg-element-1", {
-            y: 10,
-            rotation: 10
-        })
-        .addIndicators({name: "testimonials plant 1"})
-        .addTo(controller);
-
-    var scene9 = new ScrollMagic.Scene({triggerElement: "#testimonials", duration: 1200, offset: -300})
-        .setTween("#testimonials .bg-element-2", {
-            y: -100,
-            rotation: -10
-        })
-        .addIndicators({name: "testimonials plant 2"})
-        .addTo(controller);
-
-    var scene10 = new ScrollMagic.Scene({triggerElement: "#gifts", duration: 500, offset: -300})
-        .setTween("#gifts .left", {
-            opacity: 1,
-            x: 0,
-            paddingLeft: 215
-        })
-        .addIndicators({name: "gifts left"})
-        .addTo(controller);
-
-    var scene10Confetti = new ScrollMagic.Scene({triggerElement: "#gifts", duration: 500, offset: -100})
-        .setTween("#gifts .confetti", {
-            opacity: 0.2,
-            scale: 1
-        })
-        .addIndicators({name: "gifts confetti"})
-        .addTo(controller);
-
-    var scene11 = new ScrollMagic.Scene({triggerElement: "#gifts", duration: 500, offset: -300})
-        .setTween("#gifts .right", {
-            opacity: 1,
-            x: 0
-        })
-        .addIndicators({name: "gifts right"})
-        .addTo(controller);
-
-    var scenePinRsvp = new ScrollMagic.Scene({triggerElement: "#rsvp", duration: 1000, offset: 400})
-        .setPin("#rsvp")
-        .addIndicators({name: "pin rsvp"})
-        .addTo(controller);
-
-    var scene12 = new ScrollMagic.Scene({triggerElement: "#rsvp", duration: 800, offset: 0})
-        .setTween("#rsvp .photo-1", {
-            opacity: 1,
-            y: 0
-        })
-        .addIndicators({name: "rsvp photo 1"})
-        .addTo(controller);
-
-    var scene13 = new ScrollMagic.Scene({triggerElement: "#rsvp", duration: 800, offset: 300})
-        .setTween("#rsvp .photo-2", {
-            opacity: 1,
-            y: 0
-        })
-        .addIndicators({name: "rsvp photo 2"})
-        .addTo(controller);
-
-    var scene14 = new ScrollMagic.Scene({triggerElement: "#rsvp", duration: 800, offset: 600})
-        .setTween("#rsvp .photo-3", {
-            opacity: 1,
-            y: 0
-        })
-        .addIndicators({name: "rsvp photo 3"})
-        .addTo(controller);
-
-    var scene15 = new ScrollMagic.Scene({triggerElement: "#rsvp", duration: 500, offset: 1300})
-        .setTween("#rsvp .box", {
-            opacity: 1,
-        })
-        .addIndicators({name: "rsvp box"})
-        .addTo(controller);
+        var controller = new ScrollMagic.Controller();
+    
+        var scene1 = new ScrollMagic
+            .Scene({triggerElement: "#header", duration: 800, offset: 500})
+            .setTween("#countdown", {
+                opacity: 1,
+                y: 0
+            })
+            // .addIndicators({name: "opacity #countdown"})
+            .addTo(controller);
+    
+        var sceneDays = new ScrollMagic
+            .Scene({triggerElement: "#header", duration: 300, offset: 500})
+            .setTween("#countdown .countDays", {
+                opacity: 1,
+                y: 0
+            })
+            // .addIndicators({name: "Days"})
+            .addTo(controller);
+    
+        var sceneHours = new ScrollMagic
+            .Scene({triggerElement: "#header", duration: 300, offset: 650})
+            .setTween("#countdown .countHours", {
+                opacity: 1,
+                y: 0
+            })
+            // .addIndicators({name: "Hours"})
+            .addTo(controller);
+    
+        var sceneMinutes = new ScrollMagic
+            .Scene({triggerElement: "#header", duration: 300, offset: 800})
+            .setTween("#countdown .countMinutes", {
+                opacity: 1,
+                y: 0
+            })
+            // .addIndicators({name: "Minutes"})
+            .addTo(controller);
+    
+        var sceneSeconds = new ScrollMagic
+            .Scene({triggerElement: "#header", duration: 300, offset: 950})
+            .setTween("#countdown .countSeconds", {
+                opacity: 1,
+                y: 0
+            })
+            // .addIndicators({name: "Seconds"})
+            .addTo(controller);
+    
+        var scene2 = new ScrollMagic.Scene({triggerElement: "#party", duration: 500})
+            .setTween("#party", {
+                opacity: 1
+            })
+            // .addIndicators({name: "opacity #party"})
+            .addTo(controller);
+    
+        var scene25 = new ScrollMagic.Scene({triggerElement: "#party", duration: 290})
+            .setTween("#party .left", {
+                x: 0
+            })
+            // .addIndicators({name: "#party left"})
+            .addTo(controller);
+    
+        var scene3 = new ScrollMagic.Scene({triggerElement: "#party", duration: 500, offset: 300})
+            .setTween("#party .col-2 .box-1", {
+                opacity: 1,
+                y: 0
+            })
+            // .addIndicators({name: "col2 box1"})
+            .addTo(controller);
+    
+        var scene4 = new ScrollMagic.Scene({triggerElement: "#party", duration: 500, offset: 300})
+            .setTween("#party .col-2 .box-2", {
+                opacity: 1,
+                x: 0
+            })
+            // .addIndicators({name: "col2 box2"})
+            .addTo(controller);
+    
+        var scene5 = new ScrollMagic.Scene({triggerElement: "#party", duration: 500, offset: 300})
+            .setTween("#party .col-1 .box-1", {
+                opacity: 1,
+                x: 0
+            })
+            // .addIndicators({name: "col1 box1"})
+            .addTo(controller);
+    
+        var scene6 = new ScrollMagic.Scene({triggerElement: "#party", duration: 500, offset: 300})
+            .setTween("#party .col-1 .box-2", {
+                opacity: 1,
+                y: 0
+            })
+            // .addIndicators({name: "col1 box2"})
+            .addTo(controller);
+    
+        var scene7 = new ScrollMagic.Scene({triggerElement: "#party", duration: 800, offset: 315})
+            .setPin("#party")
+            // .addIndicators({name: "pin party"})
+            .addTo(controller);
+    
+        var sceneTestimonials = new ScrollMagic.Scene({triggerElement: "#testimonials", duration: 800, offset: -300})
+            .setTween("#testimonials", {
+                opacity: 1
+            })
+            // .addIndicators({name: "testimonials plant 1"})
+            .addTo(controller);
+    
+        var scene8 = new ScrollMagic.Scene({triggerElement: "#testimonials", duration: 800, offset: -300})
+            .setTween("#testimonials .bg-element-1", {
+                y: 10,
+                rotation: 10
+            })
+            // .addIndicators({name: "testimonials plant 1"})
+            .addTo(controller);
+    
+        var scene9 = new ScrollMagic.Scene({triggerElement: "#testimonials", duration: 1200, offset: -300})
+            .setTween("#testimonials .bg-element-2", {
+                y: -100,
+                rotation: -10
+            })
+            // .addIndicators({name: "testimonials plant 2"})
+            .addTo(controller);
+    
+        var scene10 = new ScrollMagic.Scene({triggerElement: "#gifts", duration: 500, offset: -300})
+            .setTween("#gifts .left", {
+                opacity: 1,
+                x: 0,
+                paddingLeft: 215
+            })
+            // .addIndicators({name: "gifts left"})
+            .addTo(controller);
+    
+        var scene10Confetti = new ScrollMagic.Scene({triggerElement: "#gifts", duration: 500, offset: -100})
+            .setTween("#gifts .confetti", {
+                opacity: 0.2,
+                scale: 1
+            })
+            // .addIndicators({name: "gifts confetti"})
+            .addTo(controller);
+    
+        var scene11 = new ScrollMagic.Scene({triggerElement: "#gifts", duration: 500, offset: -300})
+            .setTween("#gifts .right", {
+                opacity: 1,
+                x: 0
+            })
+            // .addIndicators({name: "gifts right"})
+            .addTo(controller);
+    
+        var scenePinRsvp = new ScrollMagic.Scene({triggerElement: "#rsvp", duration: 1000, offset: 280})
+            .setPin("#rsvp")
+            // .addIndicators({name: "pin rsvp"})
+            .addTo(controller);
+    
+        var scene12 = new ScrollMagic.Scene({triggerElement: "#rsvp", duration: 1000, offset: 0})
+            .setTween("#rsvp .photo-1", {
+                opacity: 1,
+                y: 0,
+                rotationX: 0,
+            })
+            // .addIndicators({name: "rsvp photo 1"})
+            .addTo(controller);
+    
+        var scene13 = new ScrollMagic.Scene({triggerElement: "#rsvp", duration: 1000, offset: 300})
+            .setTween("#rsvp .photo-2", {
+                opacity: 1,
+                y: 0,
+                rotationX: 0,
+            })
+            // .addIndicators({name: "rsvp photo 2"})
+            .addTo(controller);
+    
+        var scene14 = new ScrollMagic.Scene({triggerElement: "#rsvp", duration: 1000, offset: 600})
+            .setTween("#rsvp .photo-3", {
+                opacity: 1,
+                y: 0,
+                rotationX: 0,
+            })
+            // .addIndicators({name: "rsvp photo 3"})
+            .addTo(controller);
+    
+        var scene15 = new ScrollMagic.Scene({triggerElement: "#rsvp", duration: 500, offset: 1300})
+            .setTween("#rsvp .box", {
+                opacity: 1,
+            })
+            // .addIndicators({name: "rsvp box"})
+            .addTo(controller);
+    }
 
     //depoimentos
     const regex = /^(.)|\s+(.)|'+(.)/g;
@@ -245,10 +252,24 @@ $(function(){
               nextEl: '#testimonials .arrow-right',
               prevEl: '#testimonials .arrow-left',
             },
-            effect: 'fade',
+            effect: 'cube',
+            cubeEffect: {
+                shadow: false,
+                slideShadows: false,
+            },
             scrollbar: {
               el: '.swiper-scrollbar',
             },
+            autoplay: {
+                delay: 5000,
+            },
+            loop: true,
+            breakpoints: {
+                1000: {
+                    loop: false,
+                    effect: 'fade',
+                },
+            }
         });
     });
 
@@ -489,6 +510,15 @@ $(function(){
     $("select").select2({
         minimumResultsForSearch: Infinity
     });
+
+    //parallax header
+    if(window.innerWidth >= 1000) {
+        $("#header").mousemove(function(e) {
+            parallaxIt(e, ".bg-wrapper", ".bg", -30);
+        });
+
+        animations();
+    }
 });
 
 // window.onload = function(){
