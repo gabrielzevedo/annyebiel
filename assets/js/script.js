@@ -1,3 +1,6 @@
+var testimonialsSwiper,
+    confirmou = false;
+
 $(function(){
 
     function parallaxIt(e, parent, target, movement) {
@@ -248,7 +251,7 @@ $(function(){
         $("#testimonials .swiper-wrapper").html(items.join(""));
 
         //swiper
-        var testimonialsSwiper = new Swiper('#testimonials .swiper-container', {
+        testimonialsSwiper = new Swiper('#testimonials .swiper-container', {
             navigation: {
               nextEl: '#testimonials .arrow-right',
               prevEl: '#testimonials .arrow-left',
@@ -302,18 +305,21 @@ $(function(){
     function modal(element) {
         $('body').css('overflow', 'hidden');
         $(element).addClass('active');
+        testimonialsSwiper.autoplay.stop();
     }
 
     $('.modal').click(function(event){
         if (!$(event.target).closest('.modal-container').length) {
             $(this).removeClass('active');
             $('body').css('overflow', '');
+            testimonialsSwiper.autoplay.start();
         }
     });
 
     $('.modal-close').click(function(){
         $(this).parents('.modal').removeClass('active');
         $('body').css('overflow', '');
+        testimonialsSwiper.autoplay.start();
     });
 
     $('#testimonials .reply').click(function(){
@@ -425,14 +431,13 @@ $(function(){
             },
             telefone: {
                 minlength: 'Número inválido'
-            }
+            },
         },
         submitHandler: function (form) {
             if(rsvpEtapa == 1) {
                 $.getJSON(urlRsvp, {nome: $('#codigo_convidado').val(), id_noivo: 688183})
                     .done(function(json) {
                         rsvpData = json;
-                        console.log(rsvpData)
                         $('.input-group.etapa-2').stop().slideDown({
                             start: function () {
                               $(this).css({
@@ -457,6 +462,11 @@ $(function(){
                     ddd = tel[0].replace('(', '').replace(')', ''),
                     celular = tel[1].replace(' ', '').replace('-', '');
 
+                var camposAdulto = '';
+                    $('.campo-adulto').each(function(){
+                        camposAdulto += $(this).val() + '\n';
+                    });
+
                 $.ajax({
                     url: 'https://sites.icasei.com.br/services/template_rsvp',
                     type: 'post',
@@ -469,16 +479,23 @@ $(function(){
                         "email": $('#email_convidado').val(),
                         "ddd": ddd,
                         "telefone": celular,
-                        "acompanhantes": "adasdas\nasd\nasd\nasd\nsa\ndsa\ndas\ndsa\ndsa\ndsa\nd\nas",
+                        "acompanhantes": camposAdulto,
                         "id_convidado": rsvpData.id_convidado
                     }
                 })
                 .done(function(data) {
+                    confirmou = $('#evento').val() == 'Sim' ? true : false;
+
                     form.reset();
+                    $('#qtd_pessoas, #criancas, #evento').val('').change();
+                    $(form).validate().resetForm();
                     errorList.html('');
                     $(form).parents('.modal').removeClass('active');
 
                     if(data.created != '') {
+                        if(confirmou) {
+                            $('.modal-rsvp-sent').addClass('confirmed');
+                        }
                         modal('.modal-rsvp-sent');
                     }
                 })
@@ -491,6 +508,7 @@ $(function(){
                     });
 
                     errorList.html(items.join(""));
+                    return false;
                 });
             }
         }
@@ -510,7 +528,7 @@ $(function(){
         $('.acompanhantes').html('');
 
         for (i = 1; i <= qtd; i++) {
-            $('.acompanhantes').append('<input type="text" placeholder="Nome do adulto ' + i + '" required />');
+            $('.acompanhantes').append('<input type="text" class="campo-adulto" name="adulto_' + i + '" placeholder="Nome do adulto ' + i + '" required />');
         }
     });
 
@@ -529,7 +547,7 @@ $(function(){
     //select2
     $("select").select2({
         minimumResultsForSearch: Infinity
-    });
+    }).change(function(){$(this).blur()});
 
     //parallax header
     if(window.innerWidth >= 1000) {
