@@ -388,7 +388,7 @@ $(function(){
 
     //rsvp
     var urlParams = new URLSearchParams(window.location.search),
-        codigoUrlRsvp = urlParams.get('rsvp');
+        codigoUrlRsvp = urlParams.get('rsvp') || urlParams.get('confirmacao');
         urlRsvp = 'https://sites.icasei.com.br/services/template_rsvp_convidado',
         rsvpData = '',
         rsvpEtapa = 1;
@@ -435,7 +435,7 @@ $(function(){
         },
         submitHandler: function (form) {
             if(rsvpEtapa == 1) {
-                $.getJSON(urlRsvp, {nome: $('#codigo_convidado').val(), id_noivo: 688183})
+                $.getJSON(urlRsvp, {nome: $('#codigo_convidado').val().toUpperCase(), id_noivo: 688183})
                     .done(function(json) {
                         rsvpData = json;
                         $('.input-group.etapa-2').stop().slideDown({
