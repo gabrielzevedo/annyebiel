@@ -452,7 +452,7 @@ $(function(){
                         console.log(rsvpData.acompanhantes)
 
                         for (i = 1; i <= rsvpData.acompanhantes; i++) {
-                            $('#qtd_pessoas option').eq(i).removeAttr('hidden');
+                            $('#qtd_pessoas option').eq(i).removeAttr('disabled');
                         }
 
                         rsvpEtapa = 2;
@@ -489,6 +489,7 @@ $(function(){
                     confirmou = $('#evento').val() == 'Sim' ? true : false;
 
                     form.reset();
+                    $('#qtd_pessoas option').attr('disabled', 'disabled');
                     $('#qtd_pessoas, #criancas, #evento').val('').change();
                     $(form).validate().resetForm();
                     errorList.html('');
@@ -547,9 +548,9 @@ $(function(){
     $('#telefone').mask(SPMaskBehavior, spOptions);
 
     //select2
-    // $("select").select2({
-    //     minimumResultsForSearch: Infinity
-    // }).change(function(){$(this).blur()});
+    $("select").select2({
+        minimumResultsForSearch: Infinity
+    }).change(function(){$(this).blur()});
 
     //parallax header
     if(window.innerWidth >= 1000) {

@@ -2152,6 +2152,10 @@ form .error-list:not(:empty) {
   }
 }
 
+.select2-container--default .select2-results__option--disabled {
+  display: none !important;
+}
+
 .select2-results__option:not([id]) {
   display: none;
 }
