@@ -449,6 +449,8 @@ $(function(){
                         $('.input-group.etapa-1').stop().slideUp();
                         $('#form-rsvp button').addClass('enviar').html('Enviar');
 
+                        console.log(rsvpData.acompanhantes)
+
                         for (i = 1; i <= rsvpData.acompanhantes; i++) {
                             $('#qtd_pessoas option').eq(i).removeAttr('hidden');
                         }
@@ -545,9 +547,9 @@ $(function(){
     $('#telefone').mask(SPMaskBehavior, spOptions);
 
     //select2
-    $("select").select2({
-        minimumResultsForSearch: Infinity
-    }).change(function(){$(this).blur()});
+    // $("select").select2({
+    //     minimumResultsForSearch: Infinity
+    // }).change(function(){$(this).blur()});
 
     //parallax header
     if(window.innerWidth >= 1000) {
